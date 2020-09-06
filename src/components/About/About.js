@@ -2,6 +2,7 @@ import React from "react"
 import Img from "gatsby-image"
 import PropTypes from "prop-types"
 import styled from "styled-components"
+import {MDXRenderer} from "gatsby-plugin-mdx"
 import YouTube from "../YouTube"
 import Title from "../../styles/Title"
 
@@ -70,7 +71,7 @@ const About = ({sections}) => {
     return (
         <StyledAbout>
             {sections.map((section, index) => {
-                const {html, frontmatter} = section
+                const {body, frontmatter} = section
                 const {title} = frontmatter
                 const {fluid} = frontmatter.image.childImageSharp
 
@@ -80,9 +81,10 @@ const About = ({sections}) => {
 
                         <div>
                             <Title>{title}</Title>
-                            <Description
-                                dangerouslySetInnerHTML={{__html: html}}
-                            />
+
+                            <Description>
+                                <MDXRenderer>{body}</MDXRenderer>
+                            </Description>
                         </div>
                     </AboutSection>
                 )

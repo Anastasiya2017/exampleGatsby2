@@ -3,7 +3,7 @@ import {useStaticQuery, graphql} from "gatsby"
 const usePosts = ({limit = 0} = {}) => {
     const query = graphql`
         {
-            allMarkdownRemark(
+            allMdx(
                 filter: {fileAbsolutePath: {regex: "/content/posts/"}}
                 sort: {fields: frontmatter___date, order: DESC}
             ) {
@@ -28,7 +28,7 @@ const usePosts = ({limit = 0} = {}) => {
 
     const data = useStaticQuery(query)
 
-    let posts = data.allMarkdownRemark.nodes
+    let posts = data.allMdx.nodes
 
     if (limit) {
         posts = posts.slice(0, limit)

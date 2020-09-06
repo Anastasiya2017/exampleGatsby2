@@ -3,6 +3,7 @@ import Img from "gatsby-image"
 import {graphql} from "gatsby"
 import PropTypes from "prop-types"
 import styled from "styled-components"
+import {MDXRenderer} from "gatsby-plugin-mdx"
 import SEO from "@bradgarropy/gatsby-plugin-seo"
 import Post from "../styles/Post"
 import PostBody from "../styles/PostBody"
@@ -18,8 +19,8 @@ const Image = styled(Img)`
 `
 
 const PostTemplate = ({data}) => {
-    const post = data.markdownRemark
-    const {html, frontmatter} = post
+    const post = data.mdx
+    const {body, frontmatter} = post
     const {title} = frontmatter
     const {fluid} = frontmatter.image.childImageSharp
     const image = frontmatter.image.publicURL
@@ -31,7 +32,10 @@ const PostTemplate = ({data}) => {
             <Post>
                 <Image fluid={fluid} />
                 <PostMeta post={post} />
-                <PostBody dangerouslySetInnerHTML={{__html: html}} />
+
+                <PostBody>
+                    <MDXRenderer>{body}</MDXRenderer>
+                </PostBody>
             </Post>
         </Container>
     )
@@ -43,8 +47,8 @@ PostTemplate.propTypes = {
 
 const query = graphql`
     query($slug: String!) {
-        markdownRemark(frontmatter: {slug: {eq: $slug}}) {
-            html
+        mdx(frontmatter: {slug: {eq: $slug}}) {
+            body
             frontmatter {
                 slug
                 title

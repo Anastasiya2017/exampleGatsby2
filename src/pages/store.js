@@ -2,6 +2,7 @@ import Img from "gatsby-image"
 import {navigate} from "gatsby"
 import React, {useState} from "react"
 import styled from "styled-components"
+import {MDXRenderer} from "gatsby-plugin-mdx"
 import SEO from "@bradgarropy/gatsby-plugin-seo"
 import {useStore} from "../hooks"
 import {post} from "../utils/fetch"
@@ -79,7 +80,7 @@ const StorePage = () => {
     const [email, setEmail] = useState("")
     const [loading, setLoading] = useState(false)
 
-    const {html} = store
+    const {body} = store
     const {fluid} = store.frontmatter.image.childImageSharp
 
     const onChange = event => setEmail(event.target.value)
@@ -111,7 +112,9 @@ const StorePage = () => {
                 <Image fluid={fluid} />
 
                 <Right>
-                    <div dangerouslySetInnerHTML={{__html: html}} />
+                    <div>
+                        <MDXRenderer>{body}</MDXRenderer>
+                    </div>
 
                     <Form onSubmit={onSubmit}>
                         <Input

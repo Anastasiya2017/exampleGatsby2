@@ -3,12 +3,12 @@ import {useStaticQuery, graphql} from "gatsby"
 const useAbout = () => {
     const query = graphql`
         {
-            allMarkdownRemark(
+            allMdx(
                 filter: {fileAbsolutePath: {regex: "/content/pages/about/"}}
                 sort: {fields: fileAbsolutePath, order: ASC}
             ) {
                 nodes {
-                    html
+                    body
                     frontmatter {
                         title
                         image {
@@ -25,7 +25,7 @@ const useAbout = () => {
     `
 
     const data = useStaticQuery(query)
-    const about = data.allMarkdownRemark.nodes
+    const about = data.allMdx.nodes
 
     return about
 }

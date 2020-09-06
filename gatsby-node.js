@@ -23,9 +23,7 @@ const createPages = async ({graphql, actions}) => {
 
     const {data} = await graphql(`
         {
-            allMarkdownRemark(
-                filter: {fileAbsolutePath: {regex: "/content/posts/"}}
-            ) {
+            allMdx(filter: {fileAbsolutePath: {regex: "/content/posts/"}}) {
                 nodes {
                     frontmatter {
                         slug
@@ -38,10 +36,10 @@ const createPages = async ({graphql, actions}) => {
         }
     `)
 
-    const posts = data.allMarkdownRemark.nodes
+    const posts = data.allMdx.nodes
     posts.map(post => createPostPage(post, createPage))
 
-    const tags = data.allMarkdownRemark.group.map(member => member.fieldValue)
+    const tags = data.allMdx.group.map(member => member.fieldValue)
     tags.map(tag => createTagPage(tag, createPage))
 }
 

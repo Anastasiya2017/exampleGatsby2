@@ -3,7 +3,7 @@ import {useStaticQuery, graphql} from "gatsby"
 const useTags = ({limit = 0} = {}) => {
     const query = graphql`
         {
-            allMarkdownRemark(
+            allMdx(
                 filter: {fileAbsolutePath: {regex: "/content/posts/"}}
                 sort: {fields: frontmatter___date, order: DESC}
             ) {
@@ -16,7 +16,7 @@ const useTags = ({limit = 0} = {}) => {
 
     const data = useStaticQuery(query)
 
-    let tags = data.allMarkdownRemark.group.map(member => member.fieldValue)
+    let tags = data.allMdx.group.map(member => member.fieldValue)
 
     if (limit) {
         tags = tags.slice(0, limit)

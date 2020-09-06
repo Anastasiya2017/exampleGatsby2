@@ -3,8 +3,8 @@ import {useStaticQuery, graphql} from "gatsby"
 const useStore = () => {
     const query = graphql`
         {
-            markdownRemark(fileAbsolutePath: {regex: "/content/pages/store/"}) {
-                html
+            mdx(fileAbsolutePath: {regex: "/content/pages/store/"}) {
+                body
                 frontmatter {
                     image {
                         childImageSharp {
@@ -19,7 +19,7 @@ const useStore = () => {
     `
 
     const data = useStaticQuery(query)
-    const store = data.markdownRemark
+    const store = data.mdx
 
     return store
 }

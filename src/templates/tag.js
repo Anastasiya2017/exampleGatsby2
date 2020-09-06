@@ -22,7 +22,7 @@ const TagTitle = styled.h1`
 
 const TagTemplate = ({data, pageContext}) => {
     const {tag} = pageContext
-    const posts = data.allMarkdownRemark.nodes
+    const posts = data.allMdx.nodes
 
     return (
         <Container centered>
@@ -48,7 +48,7 @@ TagTemplate.propTypes = {
 
 const query = graphql`
     query($tag: [String]!) {
-        allMarkdownRemark(
+        allMdx(
             filter: {frontmatter: {tags: {in: $tag}}}
             sort: {fields: frontmatter___date, order: DESC}
         ) {
