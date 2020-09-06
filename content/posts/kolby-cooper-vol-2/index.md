@@ -22,7 +22,7 @@ Congratulations to [Kolby Cooper][kolby-cooper] on this release! I expect to see
 
 <h2 style="text-align: center">RATING: 🥃🥃🥃🥃🍺</h2>
 
-<p style="text-align: center;"><em>Kolby Cooper definitely had some fun with the bathroom stall inspired album art.<br>He even included a real phone number!</em></p>
+<p style="text-align: center;"><em>Kolby Cooper definitely had some fun with the bathroom stall inspired album art.<br/>He even included a real phone number!</em></p>
 
 https://twitter.com/KolbyCooper_/status/1294487737974894593
 
